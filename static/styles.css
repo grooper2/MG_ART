@@ -173,8 +173,9 @@ header{
 
 .hero{
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     background: url("../images/mgart.jpg") center no-repeat;
+    background-image: rgba(0, 0, 0, 0.6);
     background-size: cover;
     display: flex;
     align-items: center;
@@ -183,7 +184,8 @@ header{
 
 .hero01{
     width: 100%;
-    height: 100vh;
+    height: 50vh;
+    background: url("../images/wallpaper1.jpg") center no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -590,6 +592,25 @@ footer{
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
   }
+    /* modal */
+  .modal-dialog .modal-times{
+      float: right;
+  }
+
+  .modal-body{
+      width: 500px;
+      height: 240px;
+  }
+
+  .form-outline{
+      font-size: 2rem;
+  }
+
+  .form-check{
+      padding-right: 2rem;
+      position: relative;
+  }
+
   
   /* Fading animation */
   .fade {
