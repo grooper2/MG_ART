@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Portfolio</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+        
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+        <!-- Google Fonts Roboto -->
+        <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+        />
+        <!-- MDB -->
+        <link rel="stylesheet" href="static/css/mdb.min.css" />
+
+        <!-- icon library CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"> 
+
+        <!-- Scroll reveal CDN -->
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <link rel="stylesheet" href="../static/styles.css">
+
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav class="nav">
+                  <div class="menu-toggle">
+                      <i class="fas fa-bars"></i>
+                      <i class="fas fa-times"></i>
+                  </div>  
+                  <a href="home.html" class="logo"><img src="{{ url_for('static', filename='/images/logo1.png')}}" alt=""></a>
+                  <ul class="nav-list">
+                      <li class="nav-item">
+                          <a href="home.html" class="nav-link">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Shop</a>
+                    </li>
+                  </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <div id="image" style="background: url(../static/images/wallpaper1.jpg) center no-repeat;">
+        <section class="hero01" id="hero01">
+            <div class="container">
+                <h2 class="sub-headline">
+                    <span class="first-letter">P</span>ortfolio
+                </h2>             
+                <br>
+                <br>
+                <br>   
+                <div class="headline-description">
+                    <div class="separator">
+                        <div class="line line-left"></div>
+                        <div class="asterisk" style="color: #c59d5f;"><i class="fas fa-asterisk"></i></div>
+                        <div class="line line-right"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </div>
+
+
+        <section class="portfolio_work" style="background-color: white;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <!-- Container wrapper -->
+                <div class="container-fluid">
+                  <!-- Toggle button -->
+                  <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarCenteredExample"
+                    aria-controls="navbarCenteredExample"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                  >
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+              
+                  <!-- Collapsible wrapper -->
+                  <div
+                    class="collapse navbar-collapse justify-content-center"
+                    id="navbarCenteredExample"
+                  >
+                    <!-- Left links -->
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Year 1</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Year 2</a>
+                      </li>
+                      <!-- Navbar dropdown -->
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Year 3</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">year 4</a>
+                      </li>
+                    </ul>
+                    <!-- Left links -->
+                  </div>
+                  <!-- Collapsible wrapper -->
+                </div>
+                <!-- Container wrapper -->
+              </nav>
+            <div class="container">
+                <br>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <section class="section-card animate-left">
+                            <div class="p_card">
+                              <div class="card-add-work">
+                                <a href="#" data-toggle="modal" data-target="#modal"><p>+</p></a>
+                              </div>
+                            </div>
+                    </div>
+                    {% for post in posts %}
+                    <div class="grid-item">
+                            <div class="card portfolio-card">
+                                <img src="../images/michalakis.jpg" alt="Michalakis" style="width:100%">
+                                <h1>Michalakis Georgiou</h1>
+                                <p class="title">CEO & Founder, Example</p>
+                                <p>Newcastle University</p>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <button>Contact</button>
+                            </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        
+        <!-- Modal -->
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Add Portfolio Work</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="modal-times">&times;</span>
+                  </button>
+                </div>
+                <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="modal-body">
+                    <fieldset class="form-group">
+                      <legend class="border-bottom mb-4">{{ legend }}</legend>
+                      <div class="form-group">
+                          {{ form.title.label(class="form-control-label") }}
+                          {% if form.title.errors %}
+                              {{ form.title(class="form-control form-control-lg is-invalid") }}
+                              <div class="invalid-feedback">
+                                  {% for error in form.title.errors %}
+                                      <span>{{ error }}</span>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                              {{ form.title(class="form-control form-control-lg") }}
+                          {% endif %}
+                      </div>
+                      <div class="form-group">
+                        {{ form.description.label(class="form-control-label") }}
+                        {% if form.description.errors %}
+                            {{ form.description(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.description.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.description(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.year.label(class="form-control-label") }}
+                      {% if form.year.errors %}
+                          {{ form.year(class="form-control form-control-lg is-invalid") }}
+                          <div class="invalid-feedback">
+                              {% for error in form.year.errors %}
+                                  <span>{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ form.year(class="form-control form-control-lg") }}
+                      {% endif %}
+                  </div>
+                  <div class="form-group">
+                    {{ form.picture.label(class="form-control-label") }}
+                    {% if form.picture.errors %}
+                        {{ form.picture(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.picture.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.picture(class="form-control form-control-lg") }}
+                    {% endif %}
+                    </div>
+                    <br>
+                    </fieldset>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark btn-rounded" data-dismiss="modal">
+                    Close
+                  </button>
+                  <div class="form-group">
+                    {{ form.submit(class="btn btn-dark btn-rounded") }}
+                  </div>
+                  <!-- <button type="button" class="btn btn-dark btn-rounded">Save Portfolio Work</button> -->
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+
+    </body>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="static/js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+
+    <script src="{{ url_for('static', filename='main.js')}}"></script>
+
+</html>
