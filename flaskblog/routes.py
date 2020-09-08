@@ -15,38 +15,16 @@ from base64 import b64encode, b64decode
 def home():
     return render_template('home.html')
 
-
-@app.route("/portfolio", methods=['GET', 'POST'])
-def portfolio():
-    posts = Post.query.all()
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(title=form.title.data, year=form.year.data, picture=form.picture.data,
-                     description=form.description.data, author=current_user)
-        if form.picture.data:
-            picture_file = save_picture(form.picture.data)
-            current_user.receipt_file = picture_file
-        db.session.add(post)
-        db.session.commit()
-        posts = Post.query.all()
-        flash('Portfolio work has been uploaded!', 'success')
-        return redirect(url_for('portfolio'))
-    return render_template('portfolio.html', form=form, title='portfolio')
-
-
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    if current_user.role == 'Admin':
-        form = RegistrationForm()
-        if form.validate_on_submit():
-            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-            user = User(username=form.username.data, email=form.email.data, password=hashed_password, role=form.role.data)
-            db.session.add(user)
-            db.session.commit()
-            flash('The account has been created', 'success')
-            return redirect(url_for('login'))
-    if current_user.role != 'Admin':
-        abort(403)
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password, role=form.role.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('The account has been created', 'success')
+        return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
 
@@ -65,6 +43,33 @@ def login():
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+
+@app.route("/portfolio", methods=['GET', 'POST'])
+@login_required
+def portfolio():
+    posts = Post.query.all()
+    return render_template('portfolio.html', title='portfolio', posts=posts, post=post)
+
+@app.route("/add_portfolio_work/new", methods=['GET', 'POST'])
+@login_required
+def new_portfolio_work():
+    form = PostForm()
+    if form.validate_on_submit():
+        image = b64encode(form.picture.data)
+        post = Post(title=form.title.data, year=form.year.data, image_file=image,
+                     description=form.description.data, author=current_user)
+        
+        if form.picture.data:
+            print("form.picture.data")
+        db.session.add(post)
+        print("pass")
+        db.session.commit()
+        flash('Portfolio work has been uploaded!', 'success')
+        return redirect(url_for('portfolio'))
+    else:
+        flash('Something went wrong', 'danger')
+    return render_template('add_portfolio_work.html', form=form, title='Add Portfolio Work')
 
 
 @app.route("/logout")

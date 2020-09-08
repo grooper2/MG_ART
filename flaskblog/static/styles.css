@@ -629,9 +629,27 @@ footer{
   }
 
 /* media queries */
-@media screen and (min-width: 900px){
+@media screen and (min-width: 864px){
     section{
         padding: 4.9rem;
+    }
+
+    .grid-container{
+        width: 100%;
+        display: flex;
+        grid-template-columns: 1 ;
+    }
+
+    .hero01{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .portfolio-card{
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        float: left;
     }
 
     .menu-toggle{

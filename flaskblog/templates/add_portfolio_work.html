@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Login</title>
+    <title>Register</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -26,51 +26,71 @@
     <link href="../static/register_login.css" rel="stylesheet" media="all">
 </head>
 
-<body>    
+<body>
     <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         <div class="wrapper wrapper--w780">
             <div class="card card-3">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title">Login</h2>
-                    <form method="POST">
+                    <h2 class="title">Add Portfolio Work</h2>
+                    <form method="POST" enctype="multipart/form-data">
                         {{ form.hidden_tag() }}
                         <div class="input-group">
-                            {{ form.email.label(class="input--style-3") }}
-                            {% if form.email.errors %}
-                                {{ form.email(class="input--style-3 is-invalid") }}
+                        {{ form.title.label(class="input--style-3") }}
+                        {% if form.title.errors %}
+                            {{ form.title(class="input--style-3 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.title(class="input--style-3") }}
+                        {% endif %}
+                        </div>
+                        <div class="input-group">
+                        {{ form.description.label(class="input--style-3") }}
+                        {% if form.description.errors %}
+                            {{ form.description(class="input--style-3 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.description.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.description(class="input--style-3") }}
+                        {% endif %}
+                        </div>
+                        <div class="input-group">
+                            {{ form.year.label(class="input--style-3") }}
+                            {% if form.year.errors %}
+                                {{ form.year(class="input--style-3 is-invalid") }}
                                 <div class="invalid-feedback">
-                                    {% for error in form.email.errors %}
+                                    {% for error in form.year.errors %}
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                 </div>
                             {% else %}
-                                {{ form.email(class="input--style-3") }}
+                                {{ form.year(class="input--style-3") }}
                             {% endif %}
                         </div>
                         <div class="input-group">
-                            {{ form.password.label(class="input--style-3") }}
-                            {% if form.password.errors %}
-                                {{ form.password(class="input--style-3 is-invalid") }}
+                            {{ form.picture.label(class="input--style-3") }}
+                            {% if form.picture.errors %}
+                                {{ form.picture(class="input--style-3 is-invalid") }}
                                 <div class="invalid-feedback">
-                                    {% for error in form.password.errors %}
+                                    {% for error in form.picture.errors %}
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                 </div>
                             {% else %}
-                                {{ form.password(class="input--style-3") }}
-                            {% endif %}                        
-                        </div>
+                                {{ form.picture(class="input--style-3") }}
+                            {% endif %}
+                        </div>              
                         <div class="p-t-10">
                             {{ form.submit(class="btn btn--pill btn--golden") }}
                         </div>
                     </form>
-                    <br>
-                    <div class="border-top pt-3">
-                        <small class="input--style-3">
-                            Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
-                        </small>
-                    </div>
                 </div>
             </div>
         </div>

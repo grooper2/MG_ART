@@ -75,6 +75,21 @@
 
 
         <section class="portfolio_work" style="background-color: white;">
+          <main role="main" class="container">
+            <div class="row">
+              <div class="col-md-8">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+              </div>
+            </div>
+          </main>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <!-- Container wrapper -->
                 <div class="container-fluid">
@@ -125,7 +140,7 @@
                         <section class="section-card animate-left">
                             <div class="p_card">
                               <div class="card-add-work">
-                                <a href="#" data-toggle="modal" data-target="#modal"><p>+</p></a>
+                                <a href="{{ url_for('new_portfolio_work')}}"><p>+</p></a>
                               </div>
                             </div>
                     </div>
@@ -144,97 +159,74 @@
                             </div>
                     </div>
                     {% endfor %}
+                    <div class="grid-item">
+                      <div class="card portfolio-card">
+                          <img src="../images/michalakis.jpg" alt="Michalakis" style="width:100%">
+                          <h1>Michalakis Georgiou</h1>
+                          <p class="title">CEO & Founder, Example</p>
+                          <p>Newcastle University</p>
+                          <a href="#"><i class="fab fa-instagram"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-linkedin"></i></a>
+                          <a href="#"><i class="fab fa-facebook"></i></a>
+                          <button>Contact</button>
+                      </div>
+                    </div>
+                    <div class="grid-item">
+                      <div class="card portfolio-card">
+                          <img src="../images/michalakis.jpg" alt="Michalakis" style="width:100%">
+                          <h1>Michalakis Georgiou</h1>
+                          <p class="title">CEO & Founder, Example</p>
+                          <p>Newcastle University</p>
+                          <a href="#"><i class="fab fa-instagram"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-linkedin"></i></a>
+                          <a href="#"><i class="fab fa-facebook"></i></a>
+                          <button>Contact</button>
+                      </div>
+                    </div>
+                    <div class="grid-item">
+                      <div class="card portfolio-card">
+                          <img src="../images/michalakis.jpg" alt="Michalakis" style="width:100%">
+                          <h1>Michalakis Georgiou</h1>
+                          <p class="title">CEO & Founder, Example</p>
+                          <p>Newcastle University</p>
+                          <a href="#"><i class="fab fa-instagram"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-linkedin"></i></a>
+                          <a href="#"><i class="fab fa-facebook"></i></a>
+                          <button>Contact</button>
+                      </div>
+                    </div>
+                    <div class="grid-item">
+                      <div class="card portfolio-card">
+                          <img src="../images/michalakis.jpg" alt="Michalakis" style="width:100%">
+                          <h1>Michalakis Georgiou</h1>
+                          <p class="title">CEO & Founder, Example</p>
+                          <p>Newcastle University</p>
+                          <a href="#"><i class="fab fa-instagram"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-linkedin"></i></a>
+                          <a href="#"><i class="fab fa-facebook"></i></a>
+                          <button>Contact</button>
+                      </div>
+                    </div>
+                    <div class="grid-item">
+                      <div class="card portfolio-card">
+                          <img src="../images/michalakis.jpg" alt="Michalakis" style="width:100%">
+                          <h1>Michalakis Georgiou</h1>
+                          <p class="title">CEO & Founder, Example</p>
+                          <p>Newcastle University</p>
+                          <a href="#"><i class="fab fa-instagram"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-linkedin"></i></a>
+                          <a href="#"><i class="fab fa-facebook"></i></a>
+                          <button>Contact</button>
+                      </div>
+                    </div>
                 </div>
             </div>
         </section>
-        
-        
-        <!-- Modal -->
-        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Add Portfolio Work</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="modal-times">&times;</span>
-                  </button>
-                </div>
-                <form method="POST" action="">
-                {{ form.hidden_tag() }}
-                <div class="modal-body">
-                    <fieldset class="form-group">
-                      <legend class="border-bottom mb-4">{{ legend }}</legend>
-                      <div class="form-group">
-                          {{ form.title.label(class="form-control-label") }}
-                          {% if form.title.errors %}
-                              {{ form.title(class="form-control form-control-lg is-invalid") }}
-                              <div class="invalid-feedback">
-                                  {% for error in form.title.errors %}
-                                      <span>{{ error }}</span>
-                                  {% endfor %}
-                              </div>
-                          {% else %}
-                              {{ form.title(class="form-control form-control-lg") }}
-                          {% endif %}
-                      </div>
-                      <div class="form-group">
-                        {{ form.description.label(class="form-control-label") }}
-                        {% if form.description.errors %}
-                            {{ form.description(class="form-control form-control-lg is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.description.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.description(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-                    <div class="form-group">
-                      {{ form.year.label(class="form-control-label") }}
-                      {% if form.year.errors %}
-                          {{ form.year(class="form-control form-control-lg is-invalid") }}
-                          <div class="invalid-feedback">
-                              {% for error in form.year.errors %}
-                                  <span>{{ error }}</span>
-                              {% endfor %}
-                          </div>
-                      {% else %}
-                          {{ form.year(class="form-control form-control-lg") }}
-                      {% endif %}
-                  </div>
-                  <div class="form-group">
-                    {{ form.picture.label(class="form-control-label") }}
-                    {% if form.picture.errors %}
-                        {{ form.picture(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.picture.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.picture(class="form-control form-control-lg") }}
-                    {% endif %}
-                    </div>
-                    <br>
-                    </fieldset>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-dark btn-rounded" data-dismiss="modal">
-                    Close
-                  </button>
-                  <div class="form-group">
-                    {{ form.submit(class="btn btn-dark btn-rounded") }}
-                  </div>
-                  <!-- <button type="button" class="btn btn-dark btn-rounded">Save Portfolio Work</button> -->
-                </div>
-              </form>
-              </div>
-            </div>
-          </div>
-
     </body>
 
     <!-- MDB -->

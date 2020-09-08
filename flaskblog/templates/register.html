@@ -34,32 +34,66 @@
                 <div class="card-body">
                     <h2 class="title">Registration Info</h2>
                     <form method="POST">
+                        {{ form.hidden_tag() }}
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Name" name="name">
+                            {{ form.username.label(class="input--style-3") }}
+
+                            {% if form.username.errors %}
+                                {{ form.username(class="input--style-3 is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.username(class="input--style-3") }}
+                            {% endif %}
+                            <!-- <input class="input--style-3" type="text" placeholder="Name" name="name"> -->
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday">
-                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                            {{ form.email.label(class="input--style-3") }}
+                            {% if form.email.errors %}
+                                {{ form.email(class="input--style-3 is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.email(class="input--style-3") }}
+                            {% endif %}
                         </div>
                         <div class="input-group">
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="gender">
-                                    <option disabled="disabled" selected="selected">Gender</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Other</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
+                            {{ form.password.label(class="input--style-3") }}
+                            {% if form.password.errors %}
+                                {{ form.password(class="input--style-3 is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.password(class="input--style-3") }}
+                            {% endif %}
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="email" placeholder="Email" name="email">
+                            {{ form.confirm_password.label(class="input--style-3") }}
+                            {% if form.confirm_password.errors %}
+                                {{ form.confirm_password(class="input--style-3 is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.confirm_password(class="input--style-3") }}
+                            {% endif %}
                         </div>
-                        <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Phone" name="phone">
-                        </div>
+                        <div class="btn-group">
+                            {{ form.role(class="input--style-3") }}
+                        </div>                   
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                            {{ form.submit(class="btn btn--pill btn--golden") }}
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask_login import current_user
 from wtforms.fields.html5 import DateField
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField
@@ -15,6 +15,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
+    role = SelectField('Role', choices = [('Admin', 'Admin'), ('User', 'User')])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -61,7 +62,7 @@ class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
     year = SelectField('Select Year of study', choices = [('Year 1', 'Year 1'), ('Year 2', 'Year 2'), ('Year 3', 'Year 3'), ('Year 4', 'Year 4')])                               
-    picture = FileField('Upload receipt', validators=[FileAllowed(['jpg', 'png']), DataRequired()])
+    picture = FileField('Upload picture', validators=[FileAllowed(['jpg', 'png']), FileRequired()])
     submit = SubmitField('SAVE PORTFOLIO WORK')
 
 class RequestResetForm(FlaskForm):
