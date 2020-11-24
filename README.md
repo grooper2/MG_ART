@@ -7,4 +7,4 @@ Flask is the back-end technology, it is because Flask is a micro-framework which
 it faster as it has little dependency to update and watch for security bugs. Flask also 
 make use of Jinja2 template engine, for having a static layout and to pass data on the 
 templates. Furthermore, the Web Application has media queries to make it responsive
-and a variety of animmations.
+and a variety of animations.
